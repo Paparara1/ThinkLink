@@ -1,0 +1,162 @@
+  // Struktura plików projektu
+  // .
+  // ├── public/
+  // │   ├── index.html
+  // ├── src/
+  // │   ├── components/
+  // │   │   └── Navbar.js
+  // │   ├── pages/
+  // │   │   ├── Home.js
+  // │   │   ├── About.js
+  // │   └── App.js
+  // ├── tailwind.config.js
+  // ├── postcss.config.js
+  // ├── package.json
+  // └── index.js
+
+  // Plik: src/App.js
+  import React from 'react';
+  import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+  import Navbar from './components/Navbar';
+  import Home from './pages/Home';
+  import About from './pages/About';
+
+  const App = () => {
+    return (
+      <Router>
+        <div className="bg-gray-100 min-h-screen">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </div>
+      </Router>
+    );
+  };
+
+  export default App;
+
+  // Plik: src/components/Navbar.js
+  import React from 'react';
+  import { Link } from 'react-router-dom';
+
+  const Navbar = () => {
+    return (
+      <nav className="bg-blue-500 text-white p-4">
+        <ul className="flex justify-center space-x-4">
+          <li>
+            <Link to="/" className="hover:underline">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/about" className="hover:underline">
+              About
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    );
+  };
+
+  export default Navbar;
+
+  // Plik: src/pages/Home.js
+  import React from 'react';
+
+  const Home = () => {
+    return (
+      <div className="text-center mt-10">
+        <h1 className="text-4xl font-bold text-blue-500">Witamy w MegaThinkLink!</h1>
+        <p className="text-lg mt-4">To jest strona główna Twojej aplikacji React.</p>
+      </div>
+    );
+  };
+
+  export default Home;
+
+  // Plik: src/pages/About.js
+  import React from 'react';
+
+  const About = () => {
+    return (
+      <div className="text-center mt-10">
+        <h1 className="text-4xl font-bold text-blue-500">O nas</h1>
+        <p className="text-lg mt-4">To jest strona "O nas" Twojej aplikacji React.</p>
+      </div>
+    );
+  };
+
+  export default About;
+
+  // Plik: public/index.html
+  // <!DOCTYPE html>
+  // <html lang="en">
+  // <head>
+  //   <meta charset="UTF-8" />
+  //   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  //   <title>React App</title>
+  // </head>
+  // <body>
+  //   <div id="root"></div>
+  // </body>
+  // </html>
+
+  // Plik: src/index.js
+  import React from 'react';
+  import ReactDOM from 'react-dom/client';
+  import './index.css';
+  import App from './App';
+
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+
+  // Plik: src/index.css
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  // Plik: tailwind.config.js
+  module.exports = {
+    content: ['./src/**/*.{js,jsx,ts,tsx}'],
+    theme: {
+      extend: {},
+    },
+    plugins: [],
+  };
+
+  // Plik: postcss.config.js
+  module.exports = {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  };
+
+  // Plik: package.json
+  {
+    "name": "react-app",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0",
+      "react-router-dom": "^6.14.0"
+    },
+    "devDependencies": {
+      "autoprefixer": "^10.4.13",
+      "postcss": "^8.4.21",
+      "tailwindcss": "^3.3.2"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject"
+    }
+  }
